@@ -57,7 +57,16 @@ const STATUSES = ["قيد الاصلاح","تم اصلاحه","لايصلح"];
 async function q(text, params=[]){ return (await pool.query(text,params)).rows; }
 async function one(text, params=[]){ return (await pool.query(text,params)).rows[0]; }
 async function init(){
-  const schema=fs.readFileSync(path.join(__dirname,"db","schema.sql"),"utf8");
+  const schemaCandidates = [
+    path.join(__dirname, "db", "schema.sql"),
+    path.join(__dirname, "BN-SMART-schema.sql"),
+    path.join(__dirname, "src", "db", "schema.sql"),
+  ];
+  const schemaPath = schemaCandidates.find((p) => fs.existsSync(p));
+  if (!schemaPath) {
+    throw new Error(`Database schema not found. Checked: ${schemaCandidates.join(", ")}`);
+  }
+  const schema=fs.readFileSync(schemaPath,"utf8");
   await pool.query(schema);
 
   // SaaS foundation: create the tenant table and migrate legacy single-shop data
