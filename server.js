@@ -126,10 +126,10 @@ async function init(){
   // Public tracking uses a narrowly-scoped SECURITY DEFINER function. It accepts
   // only a tracking code and returns one repair, while authenticated APIs remain RLS-protected.
   await pool.query(`CREATE OR REPLACE FUNCTION public_track_repair(p_code TEXT) RETURNS TABLE(
-    id BIGINT, receipt_no INTEGER, tracking_code VARCHAR, brand VARCHAR, model VARCHAR, color VARCHAR, serial_no VARCHAR, fault TEXT, status VARCHAR,
+    id BIGINT, receipt_no INTEGER, tracking_code VARCHAR, brand VARCHAR, model VARCHAR, color VARCHAR, fault TEXT, status VARCHAR,
     updated_at TIMESTAMPTZ, due_at TIMESTAMPTZ, expected_price NUMERIC, paid_amount NUMERIC, accessories JSONB, customer_name VARCHAR, customer_phone VARCHAR
   ) LANGUAGE SQL SECURITY DEFINER SET search_path=public AS $$
-    SELECT r.id,r.receipt_no,r.tracking_code,r.brand,r.model,r.color,r.serial_no,r.fault,r.status,r.updated_at,r.due_at,r.expected_price,r.paid_amount,r.accessories,c.name,c.phone
+    SELECT r.id,r.receipt_no,r.tracking_code,r.brand,r.model,r.color,r.fault,r.status,r.updated_at,r.due_at,r.expected_price,r.paid_amount,r.accessories,c.name,c.phone
     FROM repair_orders r JOIN customers c ON c.id=r.customer_id WHERE r.tracking_code=p_code LIMIT 1;
   $$`);
   await pool.query(`REVOKE ALL ON FUNCTION public_track_repair(TEXT) FROM PUBLIC`);
@@ -314,11 +314,11 @@ app.patch("/api/repairs/:id",auth,can("edit_repair"),async(req,res)=>{
       }
     }
     const r=(await client.query(`UPDATE repair_orders SET
-      customer_id=$1, brand=$2, model=$3, color=$4, serial_no=COALESCE($5), due_at=COALESCE($6,due_at),
+      customer_id=$1, brand=$2, model=$3, color=$4, due_at=COALESCE($5,due_at),
       power_state=$7, fault=$8, diagnosis=$9, expected_price=COALESCE($10,expected_price), paid_amount=COALESCE($11,paid_amount),
       part_cost=COALESCE($12,part_cost), accessories=COALESCE($13,accessories), accessory_notes=COALESCE($14,accessory_notes),
       notes=COALESCE($15,notes), supplier=COALESCE($16,supplier), updated_by=$17,updated_at=NOW() WHERE id=$18 RETURNING *`,
-      [customerId,b.brand,b.model,b.colorNo===undefined?null:b.serialNo,b.dueAt===undefined?null:b.dueAt,b.power,b.fault,b.diagnosis,
+      [customerId,b.brand,b.model,b.color,b.dueAt===undefined?null:b.dueAt,b.power,b.fault,b.diagnosis,
        b.price===undefined?null:Number(b.price),b.paid===undefined?null:Number(b.paid),b.partCost===undefined?null:Number(b.partCost),
        b.accessories==null?null:JSON.stringify(b.accessories),b.accessoryNotes,b.notes,b.supplier,req.user.id,req.params.id])).rows[0];
     await client.query("COMMIT");
