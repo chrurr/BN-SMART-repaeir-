@@ -1,6 +1,6 @@
 {
   "name": "bn-smart",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
   "description": "BN SMART phone repair shop management system with real PostgreSQL database and RBAC",
   "scripts": {

@@ -83,6 +83,22 @@ async function init(){
   await pool.query(`ALTER TABLE repair_orders ADD COLUMN IF NOT EXISTS customer_received BOOLEAN NOT NULL DEFAULT FALSE`);
   await pool.query(`ALTER TABLE repair_orders ADD COLUMN IF NOT EXISTS received_at TIMESTAMPTZ`);
   await pool.query(`ALTER TABLE repair_parts ADD COLUMN IF NOT EXISTS sale_price NUMERIC(12,2) NOT NULL DEFAULT 0`);
+
+  // Compatibility migration: older deployments may have been created from a schema
+  // that did not contain supplier_purchases. Create the table before any ALTER/INDEX/FK
+  // statements so startup is self-healing instead of failing with 42P01.
+  await pool.query(`CREATE TABLE IF NOT EXISTS supplier_purchases (
+    id BIGSERIAL PRIMARY KEY,
+    shop_id BIGINT,
+    supplier VARCHAR(120) NOT NULL,
+    items JSONB NOT NULL DEFAULT '[]'::jsonb,
+    total_amount NUMERIC(12,2) NOT NULL DEFAULT 0,
+    paid_amount NUMERIC(12,2) NOT NULL DEFAULT 0,
+    notes TEXT,
+    created_by BIGINT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  )`);
+
   const tenantTables=['users','customers','repair_orders','repair_status_history','payments','spare_parts','repair_parts','inventory_transactions','notifications','activity_logs'];
   for(const table of tenantTables){
     await pool.query(`ALTER TABLE ${table} ADD COLUMN IF NOT EXISTS shop_id BIGINT`);
