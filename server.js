@@ -320,7 +320,7 @@ app.post("/api/repairs",auth,can("add_repair"),async(req,res)=>{
     const last=await client.query("SELECT COALESCE(MAX(receipt_no),184)+1 n FROM repair_orders");
     const no=last.rows[0].n, tracking="QF-"+String(no).padStart(4,"0");
     const r=(await client.query(`INSERT INTO repair_orders(shop_id,receipt_no,tracking_code,customer_id,brand,model,color,power_state,fault,diagnosis,expected_price,paid_amount,part_cost,labor_fee,status,accessories,accessory_notes,notes,supplier,created_by,updated_by)
-      VALUES($1,$2,$3,$4,$5,$6,$7,NULL,$8,$9,$10,$11,$12,$13,$14,'قيد الاصلاح',$15,$16,$17,$18,$19,$19) RETURNING *`,
+      VALUES($1,$2,$3,$4,$5,$6,$7,NULL,$8,$9,$10,$11,$12,$13,$14,'قيد الاصلاح',$15,$16,$17,$18,$19) RETURNING *`,
       [req.user.shop_id,no,tracking,customerId,b.brand,b.model,b.color,b.power,b.fault,b.diagnosis,Number(b.price)||0,Number(b.paid)||0,Number(b.partCost)||0,Math.max(0,(Number(b.price)||0)-(Number(b.partCost)||0)),JSON.stringify(b.accessories||[]),b.accessoryNotes||"",b.notes||"",b.supplier||"",req.user.id])).rows[0];
     await client.query("INSERT INTO repair_status_history(shop_id,repair_id,status,changed_by) VALUES($1,$2,$3,$4)",[req.user.shop_id,r.id,r.status,req.user.id]);
     await client.query("COMMIT");
