@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: bn-smart
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: bn-smart-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DEFAULT_ADMIN_PASSWORD
+        sync: false
+      - key: NODE_ENV
+        value: production
+
+databases:
+  - name: bn-smart-db
+    plan: free
+    databaseName: bn_smart
+    user: bn_smart
