@@ -320,7 +320,7 @@ app.post("/api/repairs",auth,can("add_repair"),async(req,res)=>{
     const last=await client.query("SELECT COALESCE(MAX(receipt_no),184)+1 n FROM repair_orders");
     const no=last.rows[0].n, tracking="QF-"+String(no).padStart(4,"0");
     const r=(await client.query(`INSERT INTO repair_orders(shop_id,receipt_no,tracking_code,customer_id,brand,model,color,power_state,fault,diagnosis,expected_price,paid_amount,part_cost,labor_fee,status,accessories,accessory_notes,notes,supplier,created_by,updated_by)
-      VALUES($1,$2,$3,$4,$5,$6,$7,NULL,$8,$9,$10,$11,$12,$13,$14,'قيد الاصلاح',$15,$16,$17,$18,$19) RETURNING *`,
+      VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,'قيد الاصلاح',$15,$16,$17,$18,$19,$19) RETURNING *`,
       [req.user.shop_id,no,tracking,customerId,b.brand,b.model,b.color,b.power,b.fault,b.diagnosis,Number(b.price)||0,Number(b.paid)||0,Number(b.partCost)||0,Math.max(0,(Number(b.price)||0)-(Number(b.partCost)||0)),JSON.stringify(b.accessories||[]),b.accessoryNotes||"",b.notes||"",b.supplier||"",req.user.id])).rows[0];
     await client.query("INSERT INTO repair_status_history(shop_id,repair_id,status,changed_by) VALUES($1,$2,$3,$4)",[req.user.shop_id,r.id,r.status,req.user.id]);
     await client.query("COMMIT");
@@ -354,9 +354,9 @@ app.patch("/api/repairs/:id",auth,can("edit_repair"),async(req,res)=>{
     }
     const r=(await client.query(`UPDATE repair_orders SET
       customer_id=$1, brand=$2, model=$3, color=$4, due_at=COALESCE($5,due_at),
-      power_state=$7, fault=$8, diagnosis=$9, expected_price=COALESCE($10,expected_price), paid_amount=COALESCE($11,paid_amount),
-      part_cost=COALESCE($12,part_cost), accessories=COALESCE($13,accessories), accessory_notes=COALESCE($14,accessory_notes),
-      notes=COALESCE($15,notes), supplier=COALESCE($16,supplier), updated_by=$17,updated_at=NOW() WHERE id=$18 RETURNING *`,
+      power_state=$6, fault=$7, diagnosis=$8, expected_price=COALESCE($9,expected_price), paid_amount=COALESCE($10,paid_amount),
+      part_cost=COALESCE($11,part_cost), accessories=COALESCE($12,accessories), accessory_notes=COALESCE($13,accessory_notes),
+      notes=COALESCE($14,notes), supplier=COALESCE($15,supplier), updated_by=$16,updated_at=NOW() WHERE id=$17 RETURNING *`,
       [customerId,b.brand,b.model,b.color,b.dueAt===undefined?null:b.dueAt,b.power,b.fault,b.diagnosis,
        b.price===undefined?null:Number(b.price),b.paid===undefined?null:Number(b.paid),b.partCost===undefined?null:Number(b.partCost),
        b.accessories==null?null:JSON.stringify(b.accessories),b.accessoryNotes,b.notes,b.supplier,req.user.id,req.params.id])).rows[0];
@@ -375,11 +375,11 @@ app.post("/api/repairs/:id/parts",auth,can("edit_repair"),async(req,res)=>{
   const client=await pool.connect(); try{await client.query('BEGIN');await setTenant(client,req.user.shop_id);
     const sp=(await client.query(`INSERT INTO spare_parts(shop_id,name,quantity,cost_price,sale_price) VALUES($1,$2,0,$3,$4) RETURNING id`,[req.user.shop_id,name,unitCost,salePrice])).rows[0];
     const rp=(await client.query(`INSERT INTO repair_parts(shop_id,repair_id,part_id,quantity,unit_cost,sale_price,added_by) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *`,[req.user.shop_id,req.params.id,sp.id,qty,unitCost,salePrice,req.user.id])).rows[0];
-    await client.query(`UPDATE repair_orders SET part_cost=COALESCE(part_cost,0)+($1*$2), updated_at=NOW(), updated_by=$3 WHERE id=$4`,[qty,unitCost,req.user.id,req.params.id]);
+    await client.query(`UPDATE repair_orders SET part_cost=COALESCE(part_cost,0)+($1::numeric*$2::numeric), updated_at=NOW(), updated_by=$3 WHERE id=$4`,[qty,unitCost,req.user.id,req.params.id]);
     await client.query('COMMIT'); res.status(201).json({...rp,part_name:name});
   }catch(e){await client.query('ROLLBACK');console.error(e);res.status(500).json({error:'تعذر إضافة قطعة الغيار'})}finally{client.release()}
 });
-app.delete("/api/repairs/:id/parts/:partId",auth,can("edit_repair"),async(req,res)=>{try{const r=await one(`DELETE FROM repair_parts WHERE id=$1 AND repair_id=$2 RETURNING *`,[req.params.partId,req.params.id]);if(!r)return res.status(404).json({error:'القطعة غير موجودة'});await q(`UPDATE repair_orders SET part_cost=GREATEST(0,COALESCE(part_cost,0)-($1*$2)),updated_at=NOW(),updated_by=$3 WHERE id=$4`,[r.quantity,r.unit_cost,req.user.id,req.params.id]);res.json({ok:true})}catch(e){res.status(500).json({error:'تعذر حذف القطعة'})}});
+app.delete("/api/repairs/:id/parts/:partId",auth,can("edit_repair"),async(req,res)=>{try{const r=await one(`DELETE FROM repair_parts WHERE id=$1 AND repair_id=$2 RETURNING *`,[req.params.partId,req.params.id]);if(!r)return res.status(404).json({error:'القطعة غير موجودة'});await q(`UPDATE repair_orders SET part_cost=GREATEST(0,COALESCE(part_cost,0)-($1::numeric*$2::numeric)),updated_at=NOW(),updated_by=$3 WHERE id=$4`,[r.quantity,r.unit_cost,req.user.id,req.params.id]);res.json({ok:true})}catch(e){res.status(500).json({error:'تعذر حذف القطعة'})}});
 app.delete("/api/repairs/:id",auth,can("delete_repairs"),async(req,res)=>{
   try{
     const r=await one("SELECT id,receipt_no,tracking_code FROM repair_orders WHERE id=$1",[req.params.id]);
