@@ -244,6 +244,7 @@ app.get("/api/dashboard",auth,can("view_repairs"),async(req,res)=>{
     FROM repair_orders`);
   const recent=await q(`SELECT r.*,c.name customer_name,c.phone FROM repair_orders r JOIN customers c ON c.id=r.customer_id ORDER BY r.created_at DESC LIMIT 8`);
   const statuses=await q("SELECT status,COUNT(*) count FROM repair_orders GROUP BY status");
+  if(req.user.role!=="manager") delete stats.profit;
   res.json({stats,recent,statuses});
 });
 
@@ -266,14 +267,30 @@ app.get("/api/reports/daily",auth,can("reports"),async(req,res)=>{
     const totalPaid=rows.reduce((n,r)=>n+Number(r.paid||0),0);
     const totalProfit=rows.reduce((n,r)=>n+Number(r.profit||0),0);
     const daysSpan=period==="all"?Math.max(rows.length,1):Math.max(1,Number(period)||30);
-    res.json({
+    const payload={
       total_repairs: total,
       total_paid: totalPaid,
-      total_profit: totalProfit,
       average_daily_repairs: total/daysSpan,
       days: rows.map(r=>({...r,percent: total?Number(r.repairs_count)*100/total:0}))
-    });
+    };
+    if(req.user.role==="manager"){payload.total_profit=totalProfit;}else{payload.days=payload.days.map(({profit,...r})=>r);}
+    res.json(payload);
   }catch(e){console.error(e);res.status(500).json({error:"تعذر تحميل تقرير الأيام"})}
+});
+
+app.get("/api/history/by-date",auth,manager,async(req,res)=>{
+  try{
+    const date=String(req.query.date||"");
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date))return res.status(400).json({error:"التاريخ غير صالح"});
+    const rows=await q(`SELECT r.id,r.receipt_no,r.created_at,r.status,r.brand,r.model,r.paid_amount,r.expected_price,r.part_cost,r.customer_received,c.name AS customer_name,c.phone AS customer_phone
+      FROM repair_orders r JOIN customers c ON c.id=r.customer_id
+      WHERE r.created_at >= $1::date AND r.created_at < ($1::date + INTERVAL '1 day')
+      ORDER BY r.created_at DESC`,[date]);
+    const summary=await one(`SELECT COUNT(*)::int AS total_repairs,COALESCE(SUM(paid_amount),0)::numeric AS total_paid,
+      COALESCE(SUM(expected_price-part_cost) FILTER(WHERE customer_received=TRUE),0)::numeric AS total_profit
+      FROM repair_orders WHERE created_at >= $1::date AND created_at < ($1::date + INTERVAL '1 day')`,[date]);
+    res.json({...summary,repairs:rows});
+  }catch(e){console.error(e);res.status(500).json({error:"تعذر تحميل سجل التاريخ المحدد"})}
 });
 
 app.get("/api/repairs",auth,can("view_repairs"),async(req,res)=>{
