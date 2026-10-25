@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: bn
+      POSTGRES_PASSWORD: bn
+      POSTGRES_DB: bn_smart
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bn -d bn_smart"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://bn:bn@db:5432/bn_smart
+      JWT_SECRET: local-test-secret-please-change-32chars
+      DEFAULT_ADMIN_PASSWORD: Admin@12345
+      NODE_ENV: production
+      PORT: "3000"
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:

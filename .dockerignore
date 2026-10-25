@@ -1,0 +1,8 @@
+node_modules
+.git
+.env
+.env.*
+npm-debug.log*
+*.log
+graphify-out
+.opencode

@@ -1,11 +1,17 @@
 require("dotenv").config();
-const {Pool}=require("pg"),bcrypt=require("bcryptjs");
-(async()=>{
- const pool=new Pool({connectionString:process.env.DATABASE_URL});
- const schema=require("fs").readFileSync("db/schema.sql","utf8"); await pool.query(schema);
- const h=await bcrypt.hash("Admin@12345",12);
- await pool.query(`INSERT INTO users(username,full_name,password_hash,role,permissions) VALUES('admin','المدير الرئيسي',$1,'manager',$2)
- ON CONFLICT(username) DO UPDATE SET password_hash=EXCLUDED.password_hash,active=true`,
- [h,JSON.stringify(Object.fromEntries(Object.keys({add_repair:1,view_repairs:1,edit_repair:1,change_status:1,customers:1,edit_customers:1,inventory:1,accounts:1,profits:1,reports:1,delete_repairs:1,delete_customers:1,users:1,settings:1,activity_logs:1,backups:1}).map(k=>[k,true])))]);
- console.log("Admin login: admin / Admin@12345"); await pool.end();
-})();
+const bcrypt = require("bcryptjs");
+const { init } = require("./src/db/init");
+const { pool, one } = require("./src/db/pool");
+
+(async () => {
+  await init();
+  const shop = await one("SELECT id FROM shops WHERE slug='bn-smart'");
+  if (!shop) throw new Error("Default shop was not created by init()");
+  const hash = await bcrypt.hash(process.env.DEFAULT_ADMIN_PASSWORD || "Admin@12345", 12);
+  await pool.query(
+    "UPDATE users SET password_hash=$1, active=true WHERE shop_id=$2 AND username='admin'",
+    [hash, shop.id]
+  );
+  console.log("Admin reset: admin / " + (process.env.DEFAULT_ADMIN_PASSWORD || "Admin@12345"));
+  await pool.end();
+})().catch((e) => { console.error(e); process.exit(1); });
