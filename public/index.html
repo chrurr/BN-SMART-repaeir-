@@ -4,69 +4,1077 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BN SMART</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
-:root{--bg:#f5f5f6;--p:#fff;--t:#171719;--m:#777;--l:#e8e8eb;--d:#111214;--r:#e3262e;--g:#159957}*{box-sizing:border-box}body{margin:0;font-family:Cairo;background:var(--bg);color:var(--t)}button,input,select,textarea{font:inherit}button{cursor:pointer}.login{position:fixed;inset:0;background:#111;display:grid;place-items:center;z-index:99}.login.hide{display:none}.loginbox{width:min(420px,92vw);background:#fff;padding:30px;border-radius:22px}.loginbox img{width:min(240px,78vw);height:auto;max-height:90px;object-fit:contain;border-radius:0;display:block;margin:auto}.loginbox h2{text-align:center}.field{margin:10px 0}.field label{display:block;font-size:12px;color:#666;margin-bottom:5px}.field input,.field select,.field textarea,.search{width:100%;padding:11px;border:1px solid var(--l);border-radius:10px;background:#fff;outline:0}.btn{border:0;border-radius:10px;padding:10px 15px;background:#171719;color:#fff}.red{background:var(--r)}.light{background:#f0f0f2;color:#171719;border:1px solid var(--l)}.app{display:none;min-height:100vh}.app.show{display:flex}.side{position:fixed;right:0;top:0;bottom:0;width:245px;background:#111;color:#fff;padding:18px 12px}.brand{display:flex;align-items:center;gap:10px;padding:5px 8px 20px;border-bottom:1px solid #2a2b2e}.brand img{width:128px;height:48px;object-fit:contain;border-radius:8px;background:#fff;padding:4px}.nav button{width:100%;border:0;background:none;color:#bbb;text-align:right;padding:11px;border-radius:10px;margin:3px 0}.nav button.active,.nav button:hover{background:#27282b;color:#fff}.main{margin-right:245px;width:calc(100% - 245px)}.top{height:72px;background:#fff;border-bottom:1px solid var(--l);display:flex;align-items:center;justify-content:space-between;padding:0 25px;position:sticky;top:0;z-index:5}.top .search{max-width:450px;background:#f2f2f3}.content{padding:25px}.page{display:none}.page.active{display:block}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.head h1{margin:0;font-size:25px}.muted{color:var(--m)}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.card{background:var(--p);border:1px solid var(--l);border-radius:16px;padding:18px;box-shadow:0 5px 22px #00000006}.stat b{font-size:25px;display:block;margin-top:7px}.grid{display:grid;grid-template-columns:1.4fr .6fr;gap:15px;margin-top:15px}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:11px 8px;border-bottom:1px solid var(--l);font-size:12px;text-align:right}.table th{color:#777}.badge{display:inline-block;border-radius:99px;padding:5px 9px;font-size:11px;font-weight:700}.green{background:#ddf6e9;color:#11713e}.blue{background:#e9efff;color:#2857c7}.orange{background:#fff0d7;color:#a96500}.gray{background:#eee;color:#555}.redbadge{background:#ffe2e3;color:#b5161d}.form{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.full{grid-column:1/-1}.checks{display:flex;gap:8px;flex-wrap:wrap}.checks label{background:#f0f0f2;padding:8px 10px;border-radius:9px;font-size:12px}.color-palette{display:flex;flex-wrap:wrap;gap:8px;padding-top:6px}.color-swatch-grid{display:flex;flex-wrap:wrap;gap:10px;padding-top:6px;align-items:center}.swatch{width:34px;height:34px;border-radius:50%;border:2px solid #dfe3e8;background:var(--sw);box-shadow:0 2px 8px #00000012;cursor:pointer;position:relative;padding:0}.swatch:hover{transform:translateY(-1px)}.swatch.active{border-color:#e3262e;box-shadow:0 0 0 3px rgba(227,38,46,.14)}.swatch[title="أبيض"]{box-shadow:inset 0 0 0 1px #bbb,0 2px 8px #00000012}.swatch.multicolor{background:conic-gradient(#e3262e,#f1c40f,#2c9c61,#2f74c0,#7b57b2,#e3262e)}.supplier-grid{display:flex;flex-wrap:wrap;gap:8px}.supplier-chip{border:1px solid #dfe3e8;background:#fff;border-radius:12px;padding:10px 14px;font-weight:700;font-size:12px;cursor:pointer}.supplier-chip:hover{border-color:#e3262e}.supplier-chip.active{background:#fff2f3;border-color:#e3262e;color:#b5161d;box-shadow:0 0 0 2px rgba(227,38,46,.10)}.chosen-value{margin-top:6px;font-size:11px;color:#777;min-height:18px}.color-choice{display:inline-flex;align-items:center;gap:6px;border:1px solid #dfe3e8;background:#fff;border-radius:999px;padding:6px 9px;font-size:11px;color:#333}.color-choice.active{border-color:#e3262e;box-shadow:0 0 0 2px rgba(227,38,46,.12)}.color-dot{width:22px;height:22px;border-radius:50%;border:1px solid #c9cdd2;display:inline-block;flex:0 0 22px}.color-label{margin-top:5px;font-size:11px;color:#666}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.detail{display:grid;grid-template-columns:1fr 1fr;gap:15px}.timeline{padding-right:18px;position:relative}.timeline:before{content:"";position:absolute;right:5px;top:5px;bottom:5px;width:2px;background:#ddd}.step{position:relative;padding:0 17px 15px 0}.step:before{content:"";position:absolute;right:0;top:4px;width:10px;height:10px;background:#159957;border-radius:50%;box-shadow:0 0 0 3px #fff}.modal{position:fixed;inset:0;background:#0008;display:none;place-items:center;padding:20px;z-index:50}.modal.show{display:grid}.modalbox{background:#fff;border-radius:18px;padding:22px;width:min(800px,96vw);max-height:90vh;overflow:auto}.toast{position:fixed;left:20px;bottom:20px;background:#111;color:#fff;padding:11px 16px;border-radius:10px;display:none;z-index:100}.toast.show{display:block}.permgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.permgrid label{background:#f1f1f2;padding:8px;border-radius:8px;font-size:12px}.supplier-dashboard-grid{display:flex;flex-wrap:wrap;gap:10px}.supplier-dashboard-grid .supplier-chip{min-width:145px;text-align:right}
-@media(max-width:950px){.cards{grid-template-columns:repeat(2,1fr)}.grid,.detail{grid-template-columns:1fr}}@media(max-width:700px){body{padding-bottom:76px}.side{position:fixed;right:0;left:0;top:auto;bottom:0;width:100%;height:70px;padding:5px 7px;z-index:40;border-top:1px solid #2a2b2e}.brand{display:none}.nav{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;height:60px;align-items:center}.nav::-webkit-scrollbar{display:none}.nav button{flex:0 0 66px;width:66px;height:56px;margin:0;padding:4px 2px;text-align:center;font-size:18px;line-height:1.1}.nav button span{display:block;font-size:9px;margin-top:2px}.main{margin-right:0;width:100%;padding-bottom:0}.content{padding:10px}.top{height:auto;min-height:66px;padding:9px;gap:8px;flex-direction:column;align-items:stretch}.top .search{max-width:none}.top>div{text-align:center}.head{gap:8px;align-items:flex-start}.head h1{font-size:20px}.form{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr;gap:8px}.card{padding:12px}.detail{grid-template-columns:1fr}.permgrid{grid-template-columns:1fr 1fr}.modal{padding:8px}.modalbox{width:100%;max-height:88vh;padding:15px}.actions .btn{flex:1 1 auto}.table th,.table td{white-space:nowrap}.checks{gap:6px}.checks label{padding:9px 8px}.loginbox{padding:24px}}
-
-/* v6 mobile layout */
-@media(max-width:700px){
-  .back-detail{min-width:92px}
-  body{padding-bottom:82px;overflow-x:hidden}
-  .side{position:fixed;right:0;left:0;top:auto;bottom:0;width:100%;height:76px;padding:4px 6px;z-index:40;border-top:1px solid #2a2b2e;background:#111}
-  .brand{display:none}
-  .nav{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;height:67px;align-items:center;padding:0 2px}
-  .nav::-webkit-scrollbar{display:none}
-  .nav button{flex:0 0 68px;width:68px;height:60px;margin:0;padding:4px 2px;text-align:center;font-size:18px;line-height:1.1}
-  .nav button span{display:block;font-size:9px;margin-top:2px;white-space:nowrap}
-  .main{margin-right:0;width:100%;min-width:0}
-  .content{padding:10px}
-  .top{min-height:70px;height:auto;padding:10px;gap:8px;flex-direction:column;align-items:stretch}
-  .top .search{max-width:none}
-  .top>div{text-align:center}
-  .head{gap:8px;align-items:flex-start;flex-wrap:wrap}
-  .head h1{font-size:20px}
-  .head .btn{flex:1 1 100%}
-  .form{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr 1fr;gap:8px}
-  .card{padding:12px;min-width:0}
-  .grid,.detail{grid-template-columns:1fr}
-  .actions{align-items:stretch}
-  .actions .btn{flex:1 1 140px;min-width:0}
-  .table{min-width:700px}
-  .card>div[style*="overflow:auto"]{overflow-x:auto}
-  .permgrid{grid-template-columns:1fr 1fr}
-  .modal{padding:8px}
-  .modalbox{width:100%;max-height:86vh;padding:15px}
-  .checks{gap:6px}
-  .checks label{padding:9px 8px}
-  .loginbox{padding:24px}
+/* ==========================================================================
+   1. Design Tokens & Theme Variables
+   ========================================================================== */
+:root {
+  --bg: #f4f6f8;
+  --p: #ffffff;
+  --t: #15171a;
+  --m: #7b828c;
+  --l: #e7eaee;
+  --d: #0f1114;
+  --r: #ef252d;
+  --r2: #ff4b28;
+  --green: #12a36b;
+  --blue: #2f70ed;
+  --orange: #ff8c24;
+  --shadow: 0 10px 25px rgba(23, 29, 37, 0.06);
+  --shadow2: 0 18px 45px rgba(23, 29, 37, 0.10);
 }
 
-/* V15 — premium commercial interface refresh */
-:root{
-  --bg:#f4f6f8;--p:#fff;--t:#15171a;--m:#7b828c;--l:#e7eaee;--d:#0f1114;
-  --r:#ef252d;--r2:#ff4b28;--green:#12a36b;--blue:#2f70ed;--orange:#ff8c24;
-  --shadow:0 12px 30px rgba(23,29,37,.07);--shadow2:0 18px 45px rgba(23,29,37,.10)
+/* ==========================================================================
+   2. Reset & Typography (Cairo Font)
+   ========================================================================== */
+* {
+  box-sizing: border-box;
 }
-html{scroll-behavior:smooth}body{background:radial-gradient(circle at 20% 0%,#fff 0,#f4f6f8 38%,#eef1f4 100%);color:var(--t)}
-button,input,select,textarea{font-family:Cairo,Arial,sans-serif}.btn{border-radius:12px;padding:11px 16px;font-weight:700;box-shadow:none;transition:.18s ease;white-space:nowrap}.btn:hover{transform:translateY(-1px)}.red{background:linear-gradient(135deg,var(--r),var(--r2));box-shadow:0 10px 18px rgba(239,37,45,.18)}
-.light{background:#fff;border:1px solid var(--l);color:#23262b}.app.show{display:block}
-.side{left:0;right:auto;width:252px;background:linear-gradient(180deg,#0d0f12,#14171b);padding:18px 14px;box-shadow:18px 0 36px rgba(0,0,0,.08);z-index:30}
-.brand{display:flex;align-items:center;gap:10px;padding:4px 6px 20px;border-bottom:1px solid rgba(255,255,255,.09);direction:ltr}.brand img{width:58px;height:58px;object-fit:contain;border-radius:50%;background:#fff;padding:4px}.brand>div{line-height:1.1}.brand b{font-size:16px;color:#fff}.brand small{font-size:11px}
-.nav{padding-top:12px}.nav button{display:flex;align-items:center;gap:10px;width:100%;border:1px solid transparent;background:transparent;color:#aeb4bc;text-align:right;padding:12px 13px;border-radius:12px;margin:3px 0;font-weight:600}.nav button.active,.nav button:hover{background:linear-gradient(90deg,rgba(239,37,45,.16),rgba(255,255,255,.06));color:#fff;border-color:rgba(255,255,255,.05)}.nav button:first-child.active{background:linear-gradient(135deg,#ef252d,#ff3a25);box-shadow:0 10px 22px rgba(239,37,45,.20)}
-.main{margin-left:252px;margin-right:0;width:calc(100% - 252px);min-width:0}.top{height:82px;padding:0 26px;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--l);gap:18px}.top-brand{display:flex;align-items:center;gap:10px;min-width:240px;direction:ltr}.top-brand img{width:44px;height:44px;object-fit:contain}.top-brand strong{display:block;font-size:19px;letter-spacing:-.3px}.top-brand small{display:block;color:var(--m);font-size:10px;margin-top:2px}.top-search-wrap{position:relative;flex:1;max-width:560px;margin:auto}.top-search-wrap .search{width:100%;padding:12px 42px 12px 16px;border-radius:30px;background:#f5f7fa;border:1px solid #dfe3e8;box-shadow:inset 0 1px 0 #fff}.search-icon{position:absolute;right:16px;top:7px;font-size:24px;color:#6f7780;z-index:1}.top-actions{display:flex;align-items:center;gap:10px;min-width:300px;justify-content:flex-end}.top-icon{width:42px;height:42px;border-radius:50%;border:1px solid var(--l);background:#fff;font-size:17px}.user-pill{display:flex;align-items:center;gap:8px;padding:5px 9px;border:1px solid var(--l);background:#fff;border-radius:14px;min-width:140px}.user-pill small{display:block;font-size:10px}.avatar{width:34px;height:34px;border-radius:50%;background:#121417;color:#fff;display:grid;place-items:center}.date-pill{padding:2px 3px 2px 10px;min-width:92px;text-align:right}.date-pill small{display:block;color:var(--m);font-size:9px}.date-pill b{font-size:11px}
-.content{padding:26px;max-width:1500px;margin:auto}.hero-head{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:20px}.hero-head .eyebrow{font-size:10px;color:var(--r);font-weight:800;letter-spacing:1.3px;text-transform:uppercase}.hero-head h1{font-size:32px;letter-spacing:-.8px;margin:3px 0}.hero-head p{margin:0;color:var(--m);font-size:13px}.hero-actions{display:flex;gap:9px;flex-wrap:wrap}
-.dashboard-stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.dashboard-stats .card{position:relative;min-height:112px;padding:17px 18px 14px;overflow:hidden;border:1px solid #e4e8ee;box-shadow:var(--shadow)}.dashboard-stats .card:after{content:"";position:absolute;left:-22px;bottom:-28px;width:86px;height:86px;border-radius:50%;background:rgba(239,37,45,.045)}.dashboard-stats .card:nth-child(1):after{background:rgba(27,167,113,.08)}.dashboard-stats .card:nth-child(2):after{background:rgba(47,112,237,.07)}.dashboard-stats .card:nth-child(3):after{background:rgba(255,140,36,.08)}.dashboard-stats .card:nth-child(4):after{background:rgba(239,37,45,.06)}.dashboard-stats .muted{font-size:11px}.dashboard-stats .stat b{font-size:28px;margin-top:5px;letter-spacing:-.5px}.dashboard-stats .card:nth-child(1) .muted:before{content:"◉";color:var(--green);margin-left:7px}.dashboard-stats .card:nth-child(2) .muted:before{content:"◒";color:var(--blue);margin-left:7px}.dashboard-stats .card:nth-child(3) .muted:before{content:"◌";color:var(--orange);margin-left:7px}.dashboard-stats .card:nth-child(4) .muted:before{content:"✓";color:var(--r);margin-left:7px}
-.dashboard-grid{display:grid;grid-template-columns:1.55fr .75fr;gap:15px;margin-top:15px}.dashboard-card{border:1px solid #e3e7ec;box-shadow:var(--shadow);border-radius:18px;padding:18px}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.section-title h3{margin:0;font-size:16px}.section-title p{margin:3px 0 0;color:var(--m);font-size:10px}.link-btn{border:0;background:transparent;color:var(--r);font-weight:800;font-size:11px}.recent-card .table th{padding-top:2px}.recent-card .table td{padding:12px 8px}.status-card{min-height:280px}.status-list>p{margin:0 0 10px;padding:10px 12px;border:1px solid #edf0f3;border-radius:12px;background:#fafbfc}.status-list>p b{font-size:17px}.status-list>p:nth-child(1){border-right:4px solid var(--r)}.status-list>p:nth-child(2){border-right:4px solid var(--blue)}.status-list>p:nth-child(3){border-right:4px solid var(--orange)}.status-list>p:nth-child(4){border-right:4px solid var(--green)}
-.card{border-color:#e4e8ed;box-shadow:var(--shadow);border-radius:18px}.head{gap:12px}.head h1{font-size:28px}.search,.field input,.field select,.field textarea{transition:border-color .18s,box-shadow .18s}.search:focus,.field input:focus,.field select:focus,.field textarea:focus{border-color:#cbd4df;box-shadow:0 0 0 4px rgba(47,112,237,.08)}.table th{font-size:11px}.table td{font-size:12px}.badge{padding:5px 10px;border:1px solid transparent}.modalbox{border-radius:20px;box-shadow:var(--shadow2)}
-.page .head{background:transparent}
-@media(max-width:1100px){.dashboard-stats{grid-template-columns:repeat(2,1fr)}.top-brand{min-width:210px}.top-actions{min-width:250px}.dashboard-grid{grid-template-columns:1fr}.main{margin-left:252px;width:calc(100% - 252px)}}
-@media(max-width:760px){body{padding-bottom:88px}.side{left:0;right:0;top:auto;bottom:0;width:100%;height:78px;padding:4px 7px;border-top:1px solid rgba(255,255,255,.10);box-shadow:0 -10px 30px rgba(0,0,0,.16)}.brand{display:none}.nav{display:flex;gap:4px;overflow-x:auto;height:68px;padding-top:0;align-items:center;scrollbar-width:none}.nav button{flex:0 0 72px;width:72px;height:60px;padding:4px 3px;justify-content:center;gap:1px;flex-direction:column;text-align:center;margin:0;font-size:17px}.nav button span{font-size:9px;line-height:1.15;white-space:nowrap}.main{margin:0;width:100%}.top{height:auto;min-height:0;padding:10px;display:grid;grid-template-columns:1fr;gap:8px}.top-brand{min-width:0;justify-content:center}.top-brand img{width:36px;height:36px}.top-brand strong{font-size:16px}.top-brand small{font-size:9px}.top-search-wrap{max-width:none;width:100%;order:2}.top-actions{min-width:0;justify-content:center;order:3;gap:7px}.top-icon{width:38px;height:38px}.user-pill{min-width:135px}.date-pill{min-width:auto}.content{padding:12px 10px}.hero-head{align-items:stretch;flex-direction:column;margin-bottom:13px}.hero-head h1{font-size:24px}.hero-actions{display:grid;grid-template-columns:1fr 1fr}.hero-actions .btn{width:100%;padding:10px 8px}.dashboard-stats{grid-template-columns:1fr 1fr;gap:8px}.dashboard-stats .card{min-height:100px;padding:13px}.dashboard-stats .stat b{font-size:22px}.dashboard-grid{grid-template-columns:1fr;gap:10px}.dashboard-card{padding:13px;border-radius:15px}.section-title h3{font-size:14px}.recent-card .table{min-width:640px}.status-card{min-height:auto}.head{flex-wrap:wrap}.head h1{font-size:22px}.head .btn{flex:1 1 100%}.form{grid-template-columns:1fr}.detail{grid-template-columns:1fr}.actions .btn{flex:1 1 140px;min-width:0}.table{min-width:680px}.modal{padding:8px}.modalbox{width:100%;max-height:87vh;padding:15px}}
-@media(max-width:430px){.dashboard-stats{grid-template-columns:1fr 1fr}.dashboard-stats .card{padding:11px}.dashboard-stats .muted{font-size:9px}.dashboard-stats .stat b{font-size:20px}.hero-actions{grid-template-columns:1fr}.top-actions{justify-content:space-between}.user-pill{min-width:118px}.date-pill b{font-size:10px}}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: 'Cairo', Arial, sans-serif;
+  background: radial-gradient(circle at 20% 0%, #ffffff 0, #f4f6f8 38%, #eef1f4 100%);
+  color: var(--t);
+  direction: rtl;
+  text-align: right;
+}
+button, input, select, textarea {
+  font-family: 'Cairo', Arial, sans-serif;
+  font-size: inherit;
+}
+button {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   3. Login Page
+   ========================================================================== */
+.login {
+  position: fixed;
+  inset: 0;
+  background: #111111;
+  display: grid;
+  place-items: center;
+  z-index: 99;
+}
+.login.hide {
+  display: none;
+}
+.loginbox {
+  width: min(420px, 92vw);
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: var(--shadow2);
+}
+.loginbox img {
+  width: min(240px, 78vw);
+  height: auto;
+  max-height: 90px;
+  object-fit: contain;
+  border-radius: 0;
+  display: block;
+  margin: 0 auto;
+}
+.loginbox h2 {
+  text-align: center;
+  margin: 15px 0 5px;
+}
+
+/* ==========================================================================
+   4. Layout Scaffolding (Strict RTL)
+   ========================================================================== */
+.app {
+  display: none;
+  min-height: 100vh;
+}
+.app.show {
+  display: block;
+}
+.side {
+  position: fixed;
+  right: 0;
+  left: auto;
+  top: 0;
+  bottom: 0;
+  width: 252px;
+  background: linear-gradient(180deg, #0d0f12, #14171b);
+  color: #ffffff;
+  padding: 18px 14px;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+  z-index: 30;
+  overflow-y: auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 6px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+.brand img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.brand > div {
+  line-height: 1.2;
+}
+.brand b {
+  font-size: 16px;
+  color: #ffffff;
+}
+.brand small {
+  font-size: 11px;
+  display: block;
+  color: #aaaaaa;
+}
+.nav {
+  padding-top: 14px;
+}
+.nav button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #aeb4bc;
+  text-align: right;
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin: 3px 0;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.18s ease;
+}
+.nav button:hover, .nav button.active {
+  background: linear-gradient(90deg, rgba(239, 37, 45, 0.16), rgba(255, 255, 255, 0.06));
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+.nav button:first-child.active {
+  background: linear-gradient(135deg, #ef252d, #ff3a25);
+  box-shadow: 0 10px 22px rgba(239, 37, 45, 0.20);
+}
+.main {
+  margin-right: 252px;
+  margin-left: 0;
+  width: calc(100% - 252px);
+  min-width: 0;
+}
+
+/* ==========================================================================
+   5. Top Header & Global Search
+   ========================================================================== */
+.top {
+  height: 80px;
+  padding: 0 26px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--l);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.top-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 240px;
+}
+.top-brand img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.top-brand strong {
+  display: block;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+}
+.top-brand small {
+  display: block;
+  color: var(--m);
+  font-size: 10px;
+  margin-top: 2px;
+}
+.top-search-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.top-search-wrap .search {
+  width: 100%;
+  padding: 11px 42px 11px 16px;
+  border-radius: 30px;
+  background: #f5f7fa;
+  border: 1px solid #dfe3e8;
+  box-shadow: inset 0 1px 0 #ffffff;
+  text-align: right;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.top-search-wrap .search:focus {
+  background: #ffffff;
+}
+.search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #6f7780;
+  z-index: 1;
+  pointer-events: none;
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 300px;
+  justify-content: flex-end;
+}
+.top-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--l);
+  background: #ffffff;
+  font-size: 17px;
+  display: grid;
+  place-items: center;
+  transition: transform 0.18s ease;
+}
+.top-icon:hover {
+  transform: translateY(-1px);
+}
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 9px;
+  border: 1px solid var(--l);
+  background: #ffffff;
+  border-radius: 14px;
+  min-width: 140px;
+}
+.user-pill small {
+  display: block;
+  font-size: 10px;
+}
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #121417;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.date-pill {
+  padding: 2px 10px 2px 3px;
+  min-width: 92px;
+  text-align: right;
+}
+.date-pill small {
+  display: block;
+  color: var(--m);
+  font-size: 9px;
+}
+.date-pill b {
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   6. Content, Pages & Section Headings
+   ========================================================================== */
+.content {
+  padding: 26px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+.page {
+  display: none;
+}
+.page.active {
+  display: block;
+}
+.page .head {
+  background: transparent;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 12px;
+}
+.head h1 {
+  margin: 0;
+  font-size: 26px;
+}
+.hero-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.hero-head .eyebrow {
+  font-size: 10px;
+  color: var(--r);
+  font-weight: 800;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+.hero-head h1 {
+  font-size: 30px;
+  letter-spacing: -0.6px;
+  margin: 3px 0;
+}
+.hero-head p {
+  margin: 0;
+  color: var(--m);
+  font-size: 13px;
+}
+.hero-actions {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.muted {
+  color: var(--m);
+}
+
+/* ==========================================================================
+   7. Buttons, Links & Badges
+   ========================================================================== */
+.btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 11px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn.red, .red {
+  background: linear-gradient(135deg, var(--r), var(--r2));
+  color: #ffffff;
+  box-shadow: 0 10px 18px rgba(239, 37, 45, 0.18);
+}
+.btn.light, .light {
+  background: #ffffff;
+  border: 1px solid var(--l);
+  color: #23262b;
+}
+.btn.green {
+  background: var(--green);
+  color: #ffffff;
+}
+.link-btn {
+  border: 0;
+  background: transparent;
+  color: var(--r);
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.link-btn:hover {
+  text-decoration: underline;
+}
+.badge {
+  display: inline-block;
+  border-radius: 99px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+.green {
+  background: #ddf6e9;
+  color: #11713e;
+}
+.blue {
+  background: #e9efff;
+  color: #2857c7;
+}
+.orange {
+  background: #fff0d7;
+  color: #a96500;
+}
+.gray {
+  background: #eeeeee;
+  color: #555555;
+}
+.redbadge {
+  background: #ffe2e3;
+  color: #b5161d;
+}
+
+/* ==========================================================================
+   8. Cards, Dashboard Metrics & Data Tables
+   ========================================================================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.card {
+  background: var(--p);
+  border: 1px solid #e4e8ed;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.stat b {
+  font-size: 25px;
+  display: block;
+  margin-top: 7px;
+}
+.dashboard-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.dashboard-stats .card {
+  position: relative;
+  min-height: 112px;
+  padding: 17px 18px 14px;
+  overflow: hidden;
+  border: 1px solid #e4e8ee;
+  box-shadow: var(--shadow);
+}
+.dashboard-stats .card:after {
+  content: "";
+  position: absolute;
+  left: -22px;
+  bottom: -28px;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: rgba(239, 37, 45, 0.045);
+}
+.dashboard-stats .card:nth-child(1):after { background: rgba(27, 167, 113, 0.08); }
+.dashboard-stats .card:nth-child(2):after { background: rgba(47, 112, 237, 0.07); }
+.dashboard-stats .card:nth-child(3):after { background: rgba(255, 140, 36, 0.08); }
+.dashboard-stats .card:nth-child(4):after { background: rgba(239, 37, 45, 0.06); }
+.dashboard-stats .muted { font-size: 11px; }
+.dashboard-stats .stat b { font-size: 26px; margin-top: 5px; letter-spacing: -0.5px; }
+.dashboard-stats .card:nth-child(1) .muted:before { content: "◉ "; color: var(--green); margin-left: 5px; }
+.dashboard-stats .card:nth-child(2) .muted:before { content: "◒ "; color: var(--blue); margin-left: 5px; }
+.dashboard-stats .card:nth-child(3) .muted:before { content: "◌ "; color: var(--orange); margin-left: 5px; }
+.dashboard-stats .card:nth-child(4) .muted:before { content: "✓ "; color: var(--r); margin-left: 5px; }
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 0.75fr;
+  gap: 15px;
+  margin-top: 15px;
+}
+.dashboard-card {
+  border: 1px solid #e3e7ec;
+  box-shadow: var(--shadow);
+  border-radius: 18px;
+  padding: 18px;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.section-title h3 {
+  margin: 0;
+  font-size: 16px;
+}
+.section-title p {
+  margin: 3px 0 0;
+  color: var(--m);
+  font-size: 11px;
+}
+.recent-card .table th { padding-top: 2px; }
+.recent-card .table td { padding: 12px 8px; }
+.status-card { min-height: 280px; }
+.status-list > p {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border: 1px solid #edf0f3;
+  border-radius: 12px;
+  background: #fafbfc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.status-list > p b { font-size: 17px; }
+.status-list > p:nth-child(1) { border-right: 4px solid var(--r); }
+.status-list > p:nth-child(2) { border-right: 4px solid var(--blue); }
+.status-list > p:nth-child(3) { border-right: 4px solid var(--orange); }
+.status-list > p:nth-child(4) { border-right: 4px solid var(--green); }
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 15px;
+  margin-top: 15px;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th, .table td {
+  padding: 11px 8px;
+  border-bottom: 1px solid var(--l);
+  font-size: 12px;
+  text-align: right;
+}
+.table th {
+  color: var(--m);
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   9. Forms, Fields & Selection Controls
+   ========================================================================== */
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+}
+.full {
+  grid-column: 1 / -1;
+}
+.field {
+  margin: 10px 0;
+  text-align: right;
+}
+.field label {
+  display: block;
+  font-size: 12px;
+  color: #666666;
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-align: right;
+}
+.field input, .field select, .field textarea, .search {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--l);
+  border-radius: 10px;
+  background: #ffffff;
+  outline: 0;
+  font-family: inherit;
+  font-size: 13px;
+  text-align: right;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.search:focus, .field input:focus, .field select:focus, .field textarea:focus {
+  border-color: #cbd4df;
+  box-shadow: 0 0 0 4px rgba(47, 112, 237, 0.08);
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  align-items: center;
+}
+.checks {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.checks label {
+  background: #f0f0f2;
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.color-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 6px;
+}
+.color-swatch-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 6px;
+  align-items: center;
+}
+.swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #dfe3e8;
+  background: var(--sw);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.swatch:hover {
+  transform: translateY(-1px);
+}
+.swatch.active {
+  border-color: #e3262e;
+  box-shadow: 0 0 0 3px rgba(227, 38, 46, 0.18);
+}
+.swatch[title="أبيض"] {
+  box-shadow: inset 0 0 0 1px #bbb, 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.swatch.multicolor {
+  background: conic-gradient(#e3262e, #f1c40f, #2c9c61, #2f74c0, #7b57b2, #e3262e);
+}
+.chosen-value {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--m);
+  min-height: 18px;
+}
+.color-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dfe3e8;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: #333333;
+  cursor: pointer;
+}
+.color-choice.active {
+  border-color: #e3262e;
+  box-shadow: 0 0 0 2px rgba(227, 38, 46, 0.12);
+}
+.color-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #c9cdd2;
+  display: inline-block;
+  flex: 0 0 20px;
+}
+.color-label {
+  margin-top: 5px;
+  font-size: 11px;
+  color: #666666;
+}
+.supplier-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.supplier-chip {
+  border: 1px solid #dfe3e8;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.supplier-chip:hover {
+  border-color: #e3262e;
+}
+.supplier-chip.active {
+  background: #fff2f3;
+  border-color: #e3262e;
+  color: #b5161d;
+  box-shadow: 0 0 0 2px rgba(227, 38, 46, 0.10);
+}
+.supplier-dashboard-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.supplier-dashboard-grid .supplier-chip {
+  min-width: 145px;
+  text-align: right;
+}
+
+/* ==========================================================================
+   10. Details, Timelines & Modals
+   ========================================================================== */
+.detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.timeline {
+  padding-right: 18px;
+  position: relative;
+}
+.timeline:before {
+  content: "";
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  width: 2px;
+  background: #dddddd;
+}
+.step {
+  position: relative;
+  padding: 0 17px 15px 0;
+  text-align: right;
+}
+.step:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  background: #159957;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #ffffff;
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+  place-items: center;
+  padding: 20px;
+  z-index: 50;
+  backdrop-filter: blur(4px);
+}
+.modal.show {
+  display: grid;
+}
+.modalbox {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  width: min(800px, 96vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow2);
+  text-align: right;
+}
+.modalbox h2 {
+  margin-top: 0;
+}
+.toast {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background: #111111;
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  display: none;
+  z-index: 100;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  font-size: 13px;
+  font-weight: 600;
+}
+.toast.show {
+  display: block;
+}
+.permgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.permgrid label {
+  background: #f1f1f2;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   11. Responsive Media Queries
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .top-brand {
+    min-width: 210px;
+  }
+  .top-actions {
+    min-width: 250px;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  body {
+    padding-bottom: 84px;
+    overflow-x: hidden;
+  }
+  .side {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 76px;
+    padding: 4px 6px;
+    z-index: 40;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    background: #111111;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.16);
+    overflow: visible;
+  }
+  .brand {
+    display: none;
+  }
+  .nav {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    height: 68px;
+    padding-top: 0;
+    align-items: center;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+  .nav button {
+    flex: 0 0 72px;
+    width: 72px;
+    height: 60px;
+    padding: 4px 3px;
+    justify-content: center;
+    gap: 1px;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.1;
+  }
+  .nav button span {
+    font-size: 9px;
+    line-height: 1.15;
+    white-space: nowrap;
+    display: block;
+    margin-top: 2px;
+  }
+  .main {
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+    min-width: 0;
+  }
+  .top {
+    height: auto;
+    min-height: 0;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .top-brand {
+    min-width: 0;
+    justify-content: center;
+  }
+  .top-brand img {
+    width: 36px;
+    height: 36px;
+  }
+  .top-brand strong {
+    font-size: 16px;
+  }
+  .top-brand small {
+    font-size: 9px;
+  }
+  .top-search-wrap {
+    max-width: none;
+    width: 100%;
+    order: 2;
+  }
+  .top-actions {
+    min-width: 0;
+    justify-content: center;
+    order: 3;
+    gap: 7px;
+  }
+  .top-icon {
+    width: 38px;
+    height: 38px;
+  }
+  .user-pill {
+    min-width: 135px;
+  }
+  .date-pill {
+    min-width: auto;
+  }
+  .content {
+    padding: 12px 10px;
+  }
+  .hero-head {
+    align-items: stretch;
+    flex-direction: column;
+    margin-bottom: 13px;
+  }
+  .hero-head h1 {
+    font-size: 24px;
+  }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    padding: 10px 8px;
+  }
+  .dashboard-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .dashboard-stats .card {
+    min-height: 100px;
+    padding: 13px;
+  }
+  .dashboard-stats .stat b {
+    font-size: 22px;
+  }
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .dashboard-card {
+    padding: 13px;
+    border-radius: 15px;
+  }
+  .section-title h3 {
+    font-size: 14px;
+  }
+  .recent-card .table {
+    min-width: 640px;
+  }
+  .status-card {
+    min-height: auto;
+  }
+  .head {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .head h1 {
+    font-size: 22px;
+  }
+  .head .btn {
+    flex: 1 1 100%;
+  }
+  .form {
+    grid-template-columns: 1fr;
+  }
+  .cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .card {
+    padding: 12px;
+    min-width: 0;
+  }
+  .grid, .detail {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    align-items: stretch;
+  }
+  .actions .btn {
+    flex: 1 1 140px;
+    min-width: 0;
+  }
+  .table {
+    min-width: 680px;
+  }
+  .table th, .table td {
+    white-space: nowrap;
+  }
+  .permgrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .modal {
+    padding: 8px;
+  }
+  .modalbox {
+    width: 100%;
+    max-height: 87vh;
+    padding: 15px;
+  }
+  .checks {
+    gap: 6px;
+  }
+  .checks label {
+    padding: 9px 8px;
+  }
+  .loginbox {
+    padding: 24px;
+  }
+  .back-detail {
+    min-width: 92px;
+  }
+}
+@media (max-width: 480px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  .dashboard-stats .card {
+    padding: 11px;
+  }
+  .dashboard-stats .muted {
+    font-size: 9px;
+  }
+  .dashboard-stats .stat b {
+    font-size: 20px;
+  }
+  .hero-actions {
+    grid-template-columns: 1fr;
+  }
+  .top-actions {
+    justify-content: space-between;
+  }
+  .user-pill {
+    min-width: 118px;
+  }
+  .date-pill b {
+    font-size: 10px;
+  }
+}
 </style></head><body>
 <div id="login" class="login"><div class="loginbox"><img src="/logo.png?v=23"><h2>BN SMART</h2><p class="muted" style="text-align:center">تسجيل الدخول إلى نظام الإدارة</p><div class="field"><label>اسم المستخدم</label><input id="lu" value="admin"></div><div class="field"><label>كلمة المرور</label><input id="lp" type="password" value=""></div><button class="btn red" style="width:100%;margin-top:8px" onclick="login()">تسجيل الدخول</button><p id="le" style="color:#c00;font-size:12px"></p></div></div>
 <div id="app" class="app"><aside class="side"><div class="brand"><img src="/logo.png?v=23"><div><b>BN SMART</b><small style="display:block;color:#aaa">TELECOM</small></div></div><nav class="nav">
 <button class="active" onclick="page('dashboard',this)">🏠 <span>الرئيسية</span></button><button id="repairsNav" onclick="page('repairs',this)">🧾 <span>الإصلاحات</span></button><button id="suppliersNav" onclick="page('suppliers',this)">📦 <span>الموردون</span></button><button id="newNav" onclick="page('new',this)">➕ <span>وصل جديد</span></button><button id="customersNav" onclick="page('customers',this)">👥 <span>العملاء</span></button><button id="accountsNav" onclick="page('accounts',this)">💰 <span>الحسابات</span></button><button id="reportsNav" onclick="page('reports',this)">📊 <span>التقارير</span></button><button id="usersNav" onclick="page('users',this)">👤 <span>المتعاونون</span></button><button id="activityNav" onclick="page('activity',this)">📝 <span>سجل النشاط</span></button><button id="settingsNav" onclick="page('settings',this)">⚙️ <span>الإعدادات</span></button><button onclick="logout()">🚪 <span>تسجيل الخروج</span></button></nav></aside>
-<main class="main"><header class="top"><div class="top-brand"><img src="/logo.png?v=23" alt="BN SMART"><div><strong>BN SMART</strong><small>صيانة الهواتف • بيع الإكسسوارات</small></div></div><div class="top-search-wrap"><span class="search-icon">⌕</span><input class="search" id="global" placeholder="ابحث عن وصل، عميل، هاتف، </div><div class="top-actions"><button type="button" class="top-icon" title="الإعدادات" onclick="page('settings')">⚙️</button><div class="user-pill"><div class="avatar">👤</div><div><b id="who"></b><small id="role" class="muted"></small></div></div><div class="date-pill"><small>اليوم</small><b id="topDate"></b></div></div></header><section class="content">
+<main class="main"><header class="top"><div class="top-brand"><img src="/logo.png?v=23" alt="BN SMART"><div><strong>BN SMART</strong><small>صيانة الهواتف • بيع الإكسسوارات</small></div></div><div class="top-search-wrap"><span class="search-icon">⌕</span><input class="search" id="global" placeholder="ابحث عن وصل، عميل، هاتف..." oninput="globalSearch(this.value)"></div><div class="top-actions"><button type="button" class="top-icon" title="الإعدادات" onclick="page('settings')">⚙️</button><div class="user-pill"><div class="avatar">👤</div><div><b id="who"></b><small id="role" class="muted"></small></div></div><div class="date-pill"><small>اليوم</small><b id="topDate"></b></div></div></header><section class="content">
 <div id="dashboard" class="page active"><div class="hero-head"><div><div class="eyebrow">BN SMART</div><h1>لوحة التحكم</h1><p>كل ما تحتاجه لإدارة الصيانة والمتابعة في مكان واحد.</p></div><div class="hero-actions"><button class="btn red" onclick="page('new')">＋ إضافة وصل جديد</button><button class="btn light" onclick="page('repairs')">عرض الإصلاحات</button></div></div><div id="stats" class="cards dashboard-stats"></div><div class="card dashboard-card" style="margin-top:15px"><div class="section-title"><div><h3>📦 الموردون</h3><p>المشتريات والرصيد المستحق لكل مورد</p></div><button class="link-btn" onclick="page('suppliers')">فتح إدارة الموردين ←</button></div><div id="supplierDash" class="supplier-dashboard-grid"></div></div><div class="dashboard-grid"><div class="card dashboard-card recent-card"><div class="section-title"><div><h3>آخر عمليات الصيانة</h3><p>أحدث الأجهزة المسجلة في المحل</p></div><button class="link-btn" onclick="page('repairs')">عرض الكل ←</button></div><div style="overflow:auto"><table class="table"><tbody id="recent"></tbody></table></div></div><div class="card dashboard-card status-card"><div class="section-title"><div><h3>حالات الإصلاح</h3><p>التوزيع الحالي للأجهزة</p></div></div><div id="status" class="status-list"></div></div></div></div>
 <div id="repairs" class="page"><div class="head"><h1>الإصلاحات</h1><button class="btn red" onclick="page('new')">+ وصل جديد</button></div><div class="card"><div class="actions" style="margin-top:0"><input class="search" style="max-width:400px" id="rs" placeholder="بحث..." oninput="loadRepairs()"><select id="rf" onchange="loadRepairs()"><option value="">كل الحالات</option><option>قيد الاصلاح</option><option>تم اصلاحه</option><option>لايصلح</option></select></div><div style="overflow:auto"><table class="table"><thead><tr><th>الوصل</th><th>العميل</th><th>الجهاز</th><th>الحالة</th><th>الاستلام</th><th class="financeCol">المدفوع</th><th class="financeCol">المتبقي</th><th>أنشأه</th><th>إجراء</th></tr></thead><tbody id="rows"></tbody></table></div></div></div>
 <div id="new" class="page"><div class="head"><h1>إضافة وصل جديد</h1></div><div class="card"><div class="form">
@@ -95,7 +1103,7 @@ button,input,select,textarea{font-family:Cairo,Arial,sans-serif}.btn{border-radi
 <div id="users" class="page"><div class="head"><div><h1>المستخدمون والمتعاونون</h1><div class="muted">صلاحيات حقيقية محفوظة في قاعدة البيانات</div></div><button class="btn red" onclick="userModal()">+ إضافة متعاون</button></div><div class="card" style="overflow:auto"><table class="table"><thead><tr><th>الاسم</th><th>اسم المستخدم</th><th>الدور</th><th>الحالة</th><th>آخر دخول</th><th>إجراءات</th></tr></thead><tbody id="userRows"></tbody></table></div></div>
 <div id="activity" class="page"><div class="head"><h1>سجل النشاط</h1></div><div class="card" style="overflow:auto"><table class="table"><thead><tr><th>المستخدم</th><th>العملية</th><th>الوصل</th><th>التاريخ</th></tr></thead><tbody id="actRows"></tbody></table></div></div>
 <div id="settings" class="page"><div class="head"><h1>الإعدادات</h1></div><div class="card"><div class="form"><div class="field"><label>اسم المحل</label><input id="shop"></div><div class="field"><label>الهاتف / WhatsApp</label><input id="phone"></div><div class="field full"><label>العنوان</label><input id="address"></div></div><div class="actions"><button class="btn red" onclick="saveSettings()">حفظ</button><button class="btn light" onclick="backup()">⬇️ نسخة احتياطية</button></div></div><div class="card" style="margin-top:14px"><h3>🔐 تغيير كلمة المرور</h3><p class="muted">يمكنك تغيير كلمة مرور حسابك من هنا، أو من صفحة المتعاونين باستخدام زر «تغيير كلمة المرور».</p><p class="muted">مدير النظام يستطيع أيضًا إعادة تعيين كلمة مرور أي حساب من صفحة المتعاونين.</p><div class="muted" style="margin:6px 0 14px">يمكنك تغيير كلمة مرور حسابك دون التأثير على باقي الحسابات. هذا الخيار متاح للمدير والمتعاون.</div><div class="form"><div class="field"><label>كلمة المرور الحالية</label><input id="curpw" type="password" autocomplete="current-password"></div><div class="field"><label>كلمة المرور الجديدة</label><input id="newpw" type="password" autocomplete="new-password"></div><div class="field"><label>تأكيد كلمة المرور الجديدة</label><input id="confpw" type="password" autocomplete="new-password"></div></div><div class="actions"><button class="btn red" onclick="changePassword()">حفظ كلمة المرور</button></div><p id="pwmsg" class="muted" style="margin-top:8px"></p></div></div>
-<div id="detail" class="page"><div class="head"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><button class="btn light back-detail" type="button" onclick="backFromDetail()">← العودة</button><h1 id="dt"></h1></div><div class="actions"><button class="btn light" onclick="printReceipt()">🖨️ طباعة الوصل</button><button class="btn light" onclick="printTicket()">🏷️ طباعة بطاقة الهاتف</button><button class="btn green" id="wa">📲 إرسال الوصل WhatsApp</button><button class="btn light" onclick="copyReceiptLink()">🔗 نسخ رابط الوصل</button></div></div><div id="dc" class="detail"></div></div>
+<div id="detail" class="page"><div class="head"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><button class="btn light back-detail" type="button" onclick="backFromDetail()">→ العودة</button><h1 id="dt"></h1></div><div class="actions"><button class="btn light" onclick="printReceipt()">🖨️ طباعة الوصل</button><button class="btn light" onclick="printTicket()">🏷️ طباعة بطاقة الهاتف</button><button class="btn green" id="wa">📲 إرسال الوصل WhatsApp</button><button class="btn light" onclick="copyReceiptLink()">🔗 نسخ رابط الوصل</button></div></div><div id="dc" class="detail"></div></div>
 </section></main></div><div id="modal" class="modal"><div class="modalbox" id="mb"></div></div><div id="toast" class="toast"></div>
 <script>
 let token=localStorage.getItem("elz_token"), me=null, current=null;
@@ -121,7 +1129,7 @@ function isManager(){return !!me&&me.role==="manager"}
 function can(p){return isManager()||!!me?.permissions?.[p]}
 function showNav(id,ok){const el=document.getElementById(id);if(el)el.style.display=ok?"block":"none"}
 async function start(){document.getElementById("login").classList.add("hide");document.getElementById("app").classList.add("show");who.textContent=me.full_name;role.textContent=me.role==="manager"?"— المدير":"— متعاون";showNav("repairsNav",can("view_repairs"));showNav("customersNav",can("customers"));showNav("suppliersNav",can("inventory"));showNav("newNav",can("add_repair"));showNav("accountsNav",isManager());showNav("reportsNav",can("reports"));showNav("usersNav",isManager());showNav("activityNav",isManager());showNav("settingsNav",can("settings"));document.querySelectorAll(".financeCol").forEach(el=>el.style.display=isManager()?"":"none");await loadDash()}
-async function page(id,btn){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));if(btn)btn.classList.add("active");if(id==="dashboard")loadDash();if(id==="repairs")loadRepairs();if(id==="customers")loadCustomers();if(id==="users")loadUsers();if(id==="activity")loadActivity();if(id==="settings")loadSettings();if(id==="accounts")loadAccounts();if(id==="reports")loadReports();if(id==="suppliers")loadSuppliers()}
+async function page(id,btn){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));if(btn)btn.classList.add("active");window.scrollTo(0,0);if(id==="dashboard")loadDash();if(id==="repairs")loadRepairs();if(id==="customers")loadCustomers();if(id==="users")loadUsers();if(id==="activity")loadActivity();if(id==="settings")loadSettings();if(id==="accounts")loadAccounts();if(id==="reports")loadReports();if(id==="suppliers")loadSuppliers()}
 function backFromDetail(){page("repairs", document.querySelector(".nav button[onclick*=\'repairs\']"));}
 window.handleAndroidBack=function(){const active=document.querySelector(".page.active");if(document.getElementById("modal")?.classList.contains("show")){closeModal();return true;}if(active?.id==="detail"){backFromDetail();return true;}if(active && active.id!=="dashboard"){page("dashboard", document.querySelector(".nav button[onclick*=\'dashboard\']"));return true;}return false;}
 const PHONE_BRANDS=['Apple', 'Samsung', 'Xiaomi', 'Redmi', 'POCO', 'Huawei', 'Honor', 'Oppo', 'OnePlus', 'Realme', 'Vivo', 'iQOO', 'Motorola', 'Lenovo', 'Nokia', 'Sony', 'Google Pixel', 'Tecno', 'Infinix', 'Itel', 'ZTE', 'TCL', 'Alcatel', 'Asus', 'ROG Phone', 'Nothing', 'Meizu', 'LG', 'HTC', 'BlackBerry', 'Microsoft Lumia', 'Sharp', 'Wiko', 'Fairphone', 'CAT', 'Doogee', 'Ulefone', 'Oukitel', 'UMIDIGI', 'Cubot', 'Nubia', 'ZTE Axon', 'Razer', 'Aspera', 'Doro', 'Crosscall', 'Energizer', 'Gigaset', 'Kyocera', 'Panasonic', 'Philips', 'Maxwest', 'Blu', 'Lava', 'Micromax', 'Karbonn', 'Jio', 'YU', 'Coolpad', 'LeEco', 'Pantech', 'Vertu', 'Yota', 'Essential', 'Palm', 'Vaio', 'BQ', 'Archos', 'Prestigio', 'Walton', 'Symphony', 'O General', 'Blackview', 'Oscal', 'HMD', 'Nothing Phone', 'الأخرى'];
@@ -306,40 +1314,50 @@ function printReceipt(){
   const qr=`${location.origin}/api/qr/${encodeURIComponent(current.tracking_code)}`;
   const remaining=Math.max(0,Number(current.expected_price||0)-Number(current.paid_amount||0));
   const phone=localStorage.getItem("elz_shop_phone")||"0668 06 94 75";
+  const device=[current.brand,current.model].filter(Boolean).join(' ')||'—';
   const html=`<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>وصل #${current.receipt_no} — BN SMART</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
   @page{size:148mm 105mm;margin:0}
   *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   html,body{margin:0!important;padding:0!important;background:#fff;color:#111}
-  body{font-family:Arial,Tahoma,"Noto Sans Arabic",sans-serif;width:148mm;height:105mm;overflow:hidden}
-  .sheet{width:148mm;height:105mm;max-height:105mm;padding:3.2mm 5mm 2.5mm;background:#fff;position:relative;overflow:hidden;page-break-inside:avoid;break-inside:avoid;page-break-after:avoid;break-after:avoid}
-  .top{position:relative;text-align:center;border-bottom:1.1px solid #e3262e;padding-bottom:1.4mm;margin-bottom:1mm;min-height:22mm}
-  .logo{display:block;width:47mm;height:13mm;object-fit:contain;margin:0 auto .1mm}
-  .brand{font-size:14px;line-height:1;font-weight:900;letter-spacing:.1px;direction:ltr}
-  .phone{position:absolute;left:0;top:1mm;font-size:10.5px;font-weight:900;direction:ltr;border-bottom:1px solid #e3262e;padding-bottom:.6mm}
-  .subtitle{font-size:9.8px;margin-top:.7mm;font-weight:600}
-  .rows{border-top:0}
-  .row{height:6.9mm;display:flex;align-items:center;justify-content:space-between;border-bottom:1px dashed #d3d6d9;padding:0 1.2mm;gap:3mm}
-  .label{font-size:9.2px;font-weight:600;white-space:nowrap}
-  .value{font-size:9.6px;font-weight:800;text-align:left;direction:ltr;unicode-bidi:plaintext;max-width:68%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .box{border:1px solid #d7dade;border-radius:2.5mm;padding:1.6mm 2.5mm;margin-top:1.2mm;height:8.8mm;display:flex;align-items:center;gap:4mm;overflow:hidden;page-break-inside:avoid;break-inside:avoid}
-  .box-title{font-size:10px;font-weight:900;white-space:nowrap;flex:0 0 auto}
-  .box-text{font-size:9.2px;line-height:1.2;min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
-  .bottom{display:grid;grid-template-columns:1fr 1.16fr;gap:2.2mm;margin-top:1.5mm;direction:ltr;height:30mm;page-break-inside:avoid;break-inside:avoid}
-  .qrbox,.money{height:30mm;border:1px solid #d7dade;border-radius:2.5mm;direction:rtl}
-  .qrbox{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1mm}
-  .qrbox img{width:18.5mm;height:18.5mm;display:block}
-  .code{font-size:8.5px;font-weight:900;direction:ltr;margin-top:.2mm}
-  .qrhint{font-size:6.5px;margin-top:.2mm;white-space:nowrap}
-  .money{background:#fff7f7;border-color:#efb6b6;padding:1.1mm 1.8mm}
-  .money-row{height:7.5mm;background:#fff;border-radius:1.6mm;margin:.55mm 0;display:flex;align-items:center;justify-content:space-between;padding:0 1.8mm;font-size:9px}
-  .money-row b{font-size:9.4px}
-  .terms{border:1px solid #d7dade;border-radius:2.5mm;padding:1.3mm 2.2mm;margin-top:1.5mm;font-size:6.8px;line-height:1.45;height:17.2mm;overflow:hidden;page-break-inside:avoid;break-inside:avoid}
-  .term{position:relative;padding-right:3mm;margin:.05mm 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .term:before{content:'•';position:absolute;right:0;color:#e3262e;font-weight:900}
-  .thanks{text-align:center;border-top:1.1px solid #e3262e;margin-top:1.2mm;padding-top:1mm;font-size:10.5px;font-weight:900;white-space:nowrap;height:6.5mm}
-  .thanks:before,.thanks:after{content:'────';color:#e3262e;font-size:7px;margin:0 2mm}
-  @media print{html,body{width:148mm!important;height:105mm!important;overflow:hidden!important}.sheet{width:148mm!important;height:105mm!important;max-height:105mm!important;overflow:hidden!important}}
+  body{font-family:'Cairo',Arial,Tahoma,sans-serif;width:148mm;height:105mm;overflow:hidden}
+  .sheet{width:148mm;height:105mm;max-height:105mm;padding:2.8mm 4.5mm 2.2mm;background:#fff;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+  .top{position:relative;text-align:center;border-bottom:1.1px solid #ef252d;padding-bottom:0.8mm;margin-bottom:0.8mm}
+  .logo{display:block;width:34mm;height:9.5mm;object-fit:contain;margin:0 auto}
+  .brand{font-size:12px;line-height:1;font-weight:900;letter-spacing:0.2px;margin-top:0.4mm}
+  .phone{position:absolute;left:0;top:0;font-size:9.5px;font-weight:800;direction:ltr;border-bottom:1px solid #ef252d;padding-bottom:0.3mm}
+  .subtitle{font-size:8.5px;margin-top:0.4mm;font-weight:700;color:#333}
+  .grid-details{display:grid;grid-template-columns:1fr 1fr;gap:0 4mm;border-bottom:1px dashed #d3d6d9;padding-bottom:0.6mm;margin-bottom:0.8mm}
+  .row{height:4.8mm;display:flex;align-items:center;justify-content:space-between;border-bottom:1px dashed #e7e9ec;padding:0 1mm;gap:2mm}
+  .grid-details .row:nth-child(7),.grid-details .row:nth-child(8){border-bottom:none}
+  .label{font-size:8.2px;font-weight:700;color:#555;white-space:nowrap}
+  .value{font-size:8.8px;font-weight:800;text-align:left;direction:ltr;unicode-bidi:plaintext;max-width:68%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .boxes-row{display:grid;grid-template-columns:1.15fr 0.85fr;gap:2mm;margin-bottom:0.8mm}
+  .box{border:1px solid #d7dade;border-radius:1.8mm;padding:0.8mm 1.8mm;min-height:6.2mm;display:flex;align-items:center;gap:2mm;overflow:hidden;background:#fafbfc}
+  .box-title{font-size:8.2px;font-weight:900;white-space:nowrap;color:#222}
+  .box-text{font-size:8px;line-height:1.2;min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right;font-weight:600}
+  .bottom{display:grid;grid-template-columns:1fr 1.15fr;gap:2.2mm;margin-bottom:0.8mm;direction:ltr;height:21mm}
+  .qrbox,.money{height:21mm;border:1px solid #d7dade;border-radius:2mm;direction:rtl}
+  .qrbox{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0.6mm;background:#fff}
+  .qrbox img{width:13.5mm;height:13.5mm;display:block}
+  .code{font-size:7.5px;font-weight:900;direction:ltr;margin-top:0.3mm}
+  .qrhint{font-size:6px;margin-top:0.2mm;white-space:nowrap;color:#666}
+  .money{background:#fff7f7;border-color:#efb6b6;padding:0.8mm 1.5mm;display:flex;flex-direction:column;justify-content:space-around}
+  .money-row{height:5.6mm;background:#ffffff;border-radius:1.2mm;display:flex;align-items:center;justify-content:space-between;padding:0 2mm;font-size:8.2px}
+  .money-row b{font-size:8.8px;font-weight:800;color:#111}
+  .money-row.remain{background:#fee8e8}
+  .money-row.remain b{color:#b5161d}
+  .terms{border:1px solid #d7dade;border-radius:1.8mm;padding:0.9mm 1.8mm;font-size:6.2px;line-height:1.35;background:#fff;margin-bottom:0.6mm}
+  .terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.4mm 3mm}
+  .term{position:relative;padding-right:2.5mm;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .term:before{content:'•';position:absolute;right:0;color:#ef252d;font-weight:900;font-size:8px}
+  .thanks{text-align:center;border-top:1px solid #ef252d;padding-top:0.6mm;font-size:8.8px;font-weight:900;white-space:nowrap;color:#111}
+  .thanks:before,.thanks:after{content:'────';color:#ef252d;font-size:7px;margin:0 2mm}
+  @media print{
+    html,body{width:148mm!important;height:105mm!important;overflow:hidden!important}
+    .sheet{width:148mm!important;height:105mm!important;max-height:105mm!important;overflow:hidden!important}
+  }
   </style></head><body><div class="sheet">
   <div class="top">
     <img class="logo" src="${location.origin}/logo.png?v=23" alt="BN SMART">
@@ -347,30 +1365,35 @@ function printReceipt(){
     <div class="phone">${esc(phone)}</div>
     <div class="subtitle">وصل استلام جهاز للصيانة</div>
   </div>
-  <div class="rows">
+  <div class="grid-details">
     <div class="row"><span class="label">رقم الوصل</span><b class="value">#${esc(current.receipt_no)}</b></div>
+    <div class="row"><span class="label">الجهاز</span><b class="value">${esc(device)}</b></div>
     <div class="row"><span class="label">العميل</span><b class="value">${esc(current.customer_name)}</b></div>
-    <div class="row"><span class="label">الهاتف</span><b class="value">${esc(current.customer_phone||'—')}</b></div>
-    <div class="row"><span class="label">الجهاز</span><b class="value">${esc([current.brand,current.model].filter(Boolean).join(' ')||'—')}</b></div>
     <div class="row"><span class="label">اللون</span><b class="value">${esc(current.color||'—')}</b></div>
-    <div class="row"><span class="label">التاريخ</span><b class="value">${new Date(current.created_at).toLocaleString('ar-DZ')}</b></div>
+    <div class="row"><span class="label">الهاتف</span><b class="value">${esc(current.customer_phone||'—')}</b></div>
     <div class="row"><span class="label">موعد الجاهزية</span><b class="value">${current.due_at?new Date(current.due_at).toLocaleString('ar-DZ'):'—'}</b></div>
+    <div class="row"><span class="label">التاريخ</span><b class="value">${new Date(current.created_at).toLocaleString('ar-DZ')}</b></div>
+    <div class="row"><span class="label">حالة الجهاز</span><b class="value">${esc(current.power_state||'—')}</b></div>
   </div>
-  <div class="box"><div class="box-title">العطل</div><div class="box-text">${esc(current.fault||'—')}</div></div>
-  <div class="box"><div class="box-title">الملحقات المستلمة</div><div class="box-text">${esc(acc)}</div></div>
+  <div class="boxes-row">
+    <div class="box"><div class="box-title">العطل:</div><div class="box-text">${esc(current.fault||'—')}</div></div>
+    <div class="box"><div class="box-title">الملحقات المستلمة:</div><div class="box-text">${esc(acc)}</div></div>
+  </div>
   <div class="bottom">
     <div class="qrbox"><img src="${qr}" alt="QR"><div class="code">${esc(current.tracking_code)}</div><div class="qrhint">امسح الرمز لمتابعة حالة جهازك</div></div>
     <div class="money">
-      <div class="money-row"><span>السعر</span><b>${Number(current.expected_price||0).toLocaleString('ar-DZ')} دج</b></div>
-      <div class="money-row"><span>المدفوع</span><b>${Number(current.paid_amount||0).toLocaleString('ar-DZ')} دج</b></div>
-      <div class="money-row"><span>المتبقي</span><b>${remaining.toLocaleString('ar-DZ')} دج</b></div>
+      <div class="money-row"><span>السعر الإجمالي</span><b>${Number(current.expected_price||0).toLocaleString('ar-DZ')} دج</b></div>
+      <div class="money-row"><span>المبلغ المدفوع</span><b>${Number(current.paid_amount||0).toLocaleString('ar-DZ')} دج</b></div>
+      <div class="money-row remain"><span>المتبقي</span><b>${remaining.toLocaleString('ar-DZ')} دج</b></div>
     </div>
   </div>
   <div class="terms">
-    <div class="term">المحل غير مسؤول عن الجهاز بعد مدة أقصاها شهر من تاريخ جاهزية الجهاز للتسليم.</div>
-    <div class="term">في حال تعرض الهاتف لسقوط في الماء، المحل غير مسؤول عن أي أعطال أو نتائج قد تظهر بعد التصليح.</div>
-    <div class="term">الضمان لمدة 24 ساعة على الشاشة الأصلية فقط.</div>
-    <div class="term">الشاشات العادية والمقلدة لا يوجد ضمان عليها.</div>
+    <div class="terms-grid">
+      <div class="term">المحل غير مسؤول عن الجهاز بعد مدة أقصاها شهر من تاريخ جاهزية الجهاز للتسليم.</div>
+      <div class="term">في حال تعرض الهاتف لسقوط في الماء، المحل غير مسؤول عن أي أعطال أو نتائج قد تظهر بعد التصليح.</div>
+      <div class="term">الضمان لمدة 24 ساعة على الشاشة الأصلية فقط.</div>
+      <div class="term">الشاشات العادية والمقلدة لا يوجد ضمان عليها.</div>
+    </div>
   </div>
   <div class="thanks">شكراً لثقتكم... ونسعد دائماً بخدمتكم</div>
   </div></body></html>`;

@@ -1,4 +1,4 @@
-const CACHE="bn-smart-shell-v24";
+const CACHE="bn-smart-shell-v27";
 const SHELL=["/","/index.html","/track.html","/share.html","/logo.png","/manifest.webmanifest"];
 self.addEventListener("install",event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

@@ -151,3 +151,9 @@ test("print uses the iframe helper (no popup window)", () => {
   assert.match(html, /function printHtml/);
   assert.doesNotMatch(html, /window\.open\('','_blank','width=520/);
 });
+
+test("top bar cannot cover page action buttons", () => {
+  const html = fs.readFileSync("public/index.html", "utf8");
+  assert.doesNotMatch(html, /\.top\{[^}]*position:sticky/);
+  assert.match(html, /function page\(id,btn\)\{[^}]*window\.scrollTo\(0,0\)/);
+});
